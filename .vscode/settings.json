@@ -1,0 +1,53 @@
+{
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "dist": true
+    },
+    "prettier.singleQuote": true,
+    "[html]": {
+      "editor.formatOnSave": true
+    },
+    "[typescript]": {
+      "editor.formatOnSave": true
+    },
+    "[scss]": {
+      "editor.formatOnSave": true
+    },
+    "[json]": {
+      "editor.formatOnSave": true
+    },
+
+    "importSorter.generalConfiguration.sortOnBeforeSave": true,
+    "importSorter.importStringConfiguration.quoteMark": "single",
+
+    "importSorter.sortConfiguration.customOrderingRules.defaultOrderLevel": 100,
+    "importSorter.sortConfiguration.customOrderingRules.rules": [
+      {
+        "type": "importMember",
+        "regex": "^$",
+        "orderLevel": 10,
+        "disableSort": true
+      },
+      {
+        "regex": "^@angular",
+        "orderLevel": 20
+      },
+      {
+        "regex": "^[rxjs]",
+        "orderLevel": 30
+      },
+      {
+        "regex": "^environment",
+        "orderLevel": 40
+      },
+      {
+        "regex": "^@app",
+        "orderLevel": 45
+      },
+      {
+        "regex": "^[.]",
+        "orderLevel": 110
+      }
+    ]
+  }

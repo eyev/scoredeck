@@ -1,0 +1,38 @@
+// Import theming functions
+@import '~@angular/material/theming';
+@import './shared/theme';
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 220px;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  background-color: #212121;
+}
+.logo {
+  font-size: 1.75rem;
+  font-family: 'K2D', sans-serif;
+  color: #fff;
+  margin-bottom: 0.45rem;
+}
+mat-toolbar {
+  .mat-sidenav & {
+    padding-left: 0;
+  }
+  .logo {
+    cursor: pointer;
+    .nba-icon {
+      margin-left: 0.25rem;
+      width: 20px;
+      height: 20px;
+      transform: rotate(-45deg);
+      transform-origin: bottom;
+    }
+  }
+}

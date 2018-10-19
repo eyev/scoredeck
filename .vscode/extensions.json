@@ -1,0 +1,11 @@
+{
+	"recommendations": [
+    "Angular.ng-template",
+    "DavidAnson.vscode-markdownlint",
+    "eamodio.gitlens",
+    "EditorConfig.EditorConfig",
+    "eg2.tslint",
+    "esbenp.prettier-vscode",
+    "mike-co.import-sorter"
+    ]
+}
