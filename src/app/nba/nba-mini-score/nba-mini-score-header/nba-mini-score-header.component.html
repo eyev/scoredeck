@@ -1,0 +1,20 @@
+<header>
+  <span class="broadcaster">
+    {{meta.broadcaster}}
+  </span>
+  <span class="clock" *ngIf="meta.clock !== '' && !meta.isEndOfPeriod">
+    {{ getQuarter(meta.currentPeriod) }} Qtr | {{meta.clock}}
+  </span>
+  <span class="clock" *ngIf="meta.isEndOfPeriod && !meta.isHalftime && !meta.isComplete">
+    End of {{ getQuarter(meta.currentPeriod) }} Qtr
+  </span>
+  <span class="clock" *ngIf="meta.isHalftime">
+    Halftime
+  </span>
+  <span class="clock" *ngIf="meta.isComplete">
+    Final
+  </span>
+  <span class="clock" *ngIf="meta.clock === '' && !meta.isComplete && !meta.isEndOfPeriod && !meta.isHalftime">
+    {{meta.time}}
+  </span>
+</header>

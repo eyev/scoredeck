@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+.mini-score {
+  display: flex;
+  flex-direction: column;
+
+  @include mat-elevation(2);
+  margin: 0 1rem 2rem;
+  background: rgba(255, 255, 255, 0.01);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-in-out, background 0.2s ease-in-out;
+  &:hover {
+    @include mat-elevation(8);
+    background: rgba(255, 255, 255, 0.035);
+  }
+}

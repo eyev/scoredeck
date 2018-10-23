@@ -1,0 +1,22 @@
+<section class="score-line">
+  <div class="team">
+    <img src="/assets/logos/nba/teams/{{team.shortName}}/{{team.shortName}}.svg" alt="Cleveland Cavaliers" class="team-logo">
+    <span>{{team.shortName}}</span>
+    <span class="record">({{team.record}})</span>
+  </div>
+  <div class="quarter" *ngFor="let score of team.quarters| slice:0:4; let i = index" [class.active]="isActivePeriod(i)">
+    <span *ngIf="score">{{ score }}</span>
+    <span *ngIf="!score">&ndash;</span>
+  </div>
+  <div class="quarter" [class.active]="meta.isOvertime && !meta.isComplete" *ngIf="meta.isOvertime">
+    {{team.quarters[4]}}
+  </div>
+  <div class="quarter" [class.active]="meta.isComplete" [class.winner]="isWinner && team.total !== '0'" [class.loser]="!isWinner && team.total !== '0'">
+    <span *ngIf="team.total !== '0'">
+      {{team.total}}
+    </span>
+    <span *ngIf="team.total === '0'">
+      &mdash;
+    </span>
+  </div>
+</section>

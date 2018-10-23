@@ -10,6 +10,7 @@ import { LoadingBarService } from '@ngx-loading-bar/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  isLogoActive = false;
   constructor(
     public loader: LoadingBarService,
     private matIconRegistry: MatIconRegistry,
@@ -39,5 +40,8 @@ export class AppComponent {
         '../assets/logos/csgo/csgo.svg',
       ),
     );
+  }
+  toggleLogoActive(active: boolean) {
+    this.isLogoActive = active;
   }
 }

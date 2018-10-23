@@ -13,6 +13,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NbaModule } from './nba/nba.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,11 +22,7 @@ import { NbaModule } from './nba/nba.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
+    SharedModule,
     HttpClientModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,

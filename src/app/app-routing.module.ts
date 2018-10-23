@@ -1,8 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { NbaHomeComponent } from './nba/nba-home/nba-home.component';
 
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/nba',
+    pathMatch: 'full',
+  },
+  {
+    path: 'nba',
+    loadChildren: './nba/nba.module#NbaModule',
+  },
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

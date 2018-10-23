@@ -1,0 +1,12 @@
+button.navigation-button {
+  position: fixed;
+}
+
+button.navigation-button.next-button {
+  top: 5rem;
+  right: 2rem;
+}
+button.navigation-button.previous-button {
+  bottom: 1.5rem;
+  right: 2rem;
+}

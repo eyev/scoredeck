@@ -1,4 +1,4 @@
-<ngx-loading-bar color="#00B0FF" [includeSpinner]="false" [height]="'.2rem'"></ngx-loading-bar>
+<ngx-loading-bar color="#e65100" [includeSpinner]="false" [height]="'.2rem'"></ngx-loading-bar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="'navigation'" [mode]="'over'" [opened]="false">
     <mat-toolbar color="primary" class="logo">
@@ -43,9 +43,9 @@
       <button color="primary" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="logo">scoredeck.i<mat-icon svgIcon="nba" class="nba-icon" color="primary"></mat-icon></span>
+      <span class="logo" [class.active]="isLogoActive" (mouseover)="toggleLogoActive(true)" (mouseout)="toggleLogoActive(false)">scoredeck.i<mat-icon
+          svgIcon="nba" class="nba-icon" color="primary"></mat-icon></span>
     </mat-toolbar>
     <router-outlet></router-outlet>
-    <sd-home></sd-home>
   </mat-sidenav-content>
 </mat-sidenav-container>

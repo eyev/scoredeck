@@ -1,0 +1,7 @@
+<sd-nba-day *ngFor="let day of days | async" [day]="day" [isLive]="isLive(day.id)"></sd-nba-day>
+<button mat-fab class="navigation-button next-button">
+  <mat-icon aria-label="Example icon-button with a heart icon">keyboard_arrow_up</mat-icon>
+</button>
+<button mat-fab class="navigation-button previous-button">
+  <mat-icon aria-label="Example icon-button with a heart icon">keyboard_arrow_down</mat-icon>
+</button>

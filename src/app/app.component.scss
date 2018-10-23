@@ -27,12 +27,28 @@ mat-toolbar {
   }
   .logo {
     cursor: pointer;
+    &.active .nba-icon {
+      transform: translate3d(0, 0, 0);
+      animation-name: dribble;
+      animation-delay: 0s;
+      animation-duration: 0.2s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: ease-out;
+      animation-play-state: running;
+      animation-fill-mode: none;
+      animation-play-state: running;
+    }
     .nba-icon {
-      margin-left: 0.25rem;
+      margin-left: 0.1rem;
       width: 20px;
       height: 20px;
-      transform: rotate(-45deg);
-      transform-origin: bottom;
     }
+  }
+}
+
+@keyframes dribble {
+  100% {
+    transform: translate3d(0, -8px, 0);
   }
 }

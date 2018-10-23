@@ -1,0 +1,27 @@
+header {
+  display: flex;
+  justify-content: space-between;
+
+  font-size: 0.75rem;
+  border-bottom: 1px solid rgba(#000, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+}
+span.clock {
+  display: flex;
+  padding: 0.25rem 0.5rem;
+  background: #212121;
+  position: relative;
+  text-align: right;
+}
+span.clock:before {
+  position: absolute;
+  left: -1.35rem;
+  top: 0;
+  content: '';
+  border-top: 22px solid #212121;
+  border-left: 22px solid transparent;
+}
+
+span.broadcaster {
+  padding: 0.25rem 0.5rem;
+}

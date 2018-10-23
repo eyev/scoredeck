@@ -1,0 +1,13 @@
+<section class="day">
+  <h2>{{date | date: 'fullDate'}}
+    <div class="live-game" *ngIf="isLive">
+      <mat-icon aria-label="Side nav toggle icon">brightness_1</mat-icon>
+      <span>
+        Live Games
+      </span>
+    </div>
+  </h2>
+  <section class="scores">
+    <sd-nba-mini-score *ngFor="let game of day.games" [game]="game"></sd-nba-mini-score>
+  </section>
+</section>
