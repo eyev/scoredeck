@@ -1,51 +1,65 @@
-<ngx-loading-bar color="#e65100" [includeSpinner]="false" [height]="'.2rem'"></ngx-loading-bar>
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="'navigation'" [mode]="'over'" [opened]="false">
-    <mat-toolbar color="primary" class="logo">
-      <button color="primary" type="button" aria-label="close sidenav" mat-icon-button (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">close</mat-icon>
-      </button>
-      <span class="logo">scoredeck</span>
-    </mat-toolbar>
-    <mat-nav-list>
-      <h3 matSubheader>Traditional Sports</h3>
+<div class="app-container" [class.day-theme]="(appSettings | async).theme === 'light'">
+  <ngx-loading-bar color="#e65100" [includeSpinner]="false" [height]="'.2rem'"></ngx-loading-bar>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="true" [attr.role]="'navigation'" [mode]="'over'" [opened]="false">
+      <mat-toolbar color="primary" class="logo">
+        <button color="primary" type="button" aria-label="close sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">close</mat-icon>
+        </button>
+        <span class="logo">scoredeck</span>
+      </mat-toolbar>
+      <mat-nav-list>
+        <h3 matSubheader>Traditional Sports</h3>
 
-      <mat-list-item>
-        <a matLine href="#">Football</a>
-        <button mat-icon-button>
-          <mat-icon svgIcon="nfl"></mat-icon>
+        <mat-list-item>
+          <a matLine href="#">Football</a>
+          <button mat-icon-button>
+            <mat-icon svgIcon="nfl"></mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+          <a matLine href="#">Basketball</a>
+          <button mat-icon-button>
+            <mat-icon svgIcon="nba"></mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-list-item>
+          <a matLine href="#">Baseball</a>
+          <button mat-icon-button>
+            <mat-icon svgIcon="mlb"></mat-icon>
+          </button>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 matSubheader>Esports</h3>
+        <mat-list-item>
+          <a matLine href="#">CS:GO</a>
+          <button mat-icon-button>
+            <mat-icon svgIcon="csgo"></mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" class="header-bar mat-elevation-z7">
+        <button color="primary" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-      </mat-list-item>
-      <mat-list-item>
-        <a matLine href="#">Basketball</a>
-        <button mat-icon-button>
-          <mat-icon svgIcon="nba"></mat-icon>
+
+        <span [routerLink]="['/']" class="logo" [class.active]="isLogoActive" (mouseover)="toggleLogoActive(true)"
+          (mouseout)="toggleLogoActive(false)">scoredeck.i<mat-icon svgIcon="nba" class="nba-icon" color="primary"></mat-icon></span>
+        <div class="spacer"></div>
+
+        <button color="primary" type="button" aria-label="Toggle theme" mat-icon-button (click)="toggleTheme('light')"
+          *ngIf="(appSettings | async).theme === 'dark'">
+          <mat-icon aria-label="Day theme">wb_sunny</mat-icon>
         </button>
-      </mat-list-item>
-      <mat-list-item>
-        <a matLine href="#">Baseball</a>
-        <button mat-icon-button>
-          <mat-icon svgIcon="mlb"></mat-icon>
+        <button color="primary" type="button" aria-label="Toggle theme" mat-icon-button (click)="toggleTheme('dark')"
+          *ngIf="(appSettings | async).theme === 'light'">
+          <mat-icon aria-label="Night theme">brightness_2</mat-icon>
         </button>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h3 matSubheader>Esports</h3>
-      <mat-list-item>
-        <a matLine href="#">CS:GO</a>
-        <button mat-icon-button>
-          <mat-icon svgIcon="csgo"></mat-icon>
-        </button>
-      </mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary" class="header-bar mat-elevation-z7">
-      <button color="primary" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span class="logo" [class.active]="isLogoActive" (mouseover)="toggleLogoActive(true)" (mouseout)="toggleLogoActive(false)">scoredeck.i<mat-icon
-          svgIcon="nba" class="nba-icon" color="primary"></mat-icon></span>
-    </mat-toolbar>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

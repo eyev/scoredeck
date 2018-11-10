@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 
+import { MiniScore } from '../nba-mini-score/state/mini-score.model';
 import { NbaScheduleService } from '../nba-schedule/nba-schedule.service';
-import { MiniScore } from '../state/mini-score.model';
 
 @Component({
   selector: 'sd-nba-day',

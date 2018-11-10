@@ -1,0 +1,48 @@
+section.team {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  flex-direction: column;
+  @media screen and (min-width: 1400px) {
+    width: 50%;
+  }
+  &:first-child {
+    @media screen and (min-width: 1400px) {
+      border-bottom: none;
+    }
+  }
+  &:last-child {
+    @media screen and (min-width: 1400px) {
+      border-top: none;
+    }
+  }
+}
+.game-details {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  min-height: calc(100vh - 128px);
+  @media screen and (min-width: 1400px) {
+    flex-direction: row;
+  }
+}
+:host {
+  display: flex;
+  min-height: calc(100vh - 64px);
+}
+.game {
+  max-width: 99vw;
+}
+.game-details section.team h2 {
+  padding: 0.5rem 0 1rem;
+  font-size: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.game-details section.team h2 img {
+  max-height: 3rem;
+  margin-right: 1rem;
+}

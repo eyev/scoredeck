@@ -3,6 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../shared/shared.module';
 import { NbaDayComponent } from './nba-day/nba-day.component';
+import {
+    NbaGameBoxScoreComponent
+} from './nba-game/nba-game-box-score/nba-game-box-score.component';
+import { NbaGameHeaderComponent } from './nba-game/nba-game-header/nba-game-header.component';
+import {
+    NbaGameTeamStatsComponent
+} from './nba-game/nba-game-team-stats/nba-game-team-stats.component';
+import { NbaGameComponent } from './nba-game/nba-game.component';
 import { NbaHomeComponent } from './nba-home/nba-home.component';
 import {
     NbaMiniScoreHeaderComponent
@@ -26,6 +34,10 @@ import { NbaRoutingModule } from './nba-routing.module';
     NbaMiniScoreHeaderComponent,
     NbaMiniScoreTeamComponent,
     NbaMiniScoreKeyComponent,
+    NbaGameComponent,
+    NbaGameHeaderComponent,
+    NbaGameBoxScoreComponent,
+    NbaGameTeamStatsComponent,
   ],
 })
 export class NbaModule {}

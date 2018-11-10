@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { MiniScoreGame } from '../state/mini-score.model';
+import { MiniScoreGame } from './state/mini-score.model';
 
 @Component({
   selector: 'sd-nba-mini-score',
@@ -10,7 +11,10 @@ import { MiniScoreGame } from '../state/mini-score.model';
 export class NbaMiniScoreComponent implements OnInit {
   @Input()
   game: MiniScoreGame;
-  constructor() {}
+
+  @Input()
+  date: string;
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 
@@ -19,5 +23,13 @@ export class NbaMiniScoreComponent implements OnInit {
       return false;
     }
     return +this.game.home.total > +this.game.away.total;
+  }
+
+  click(id: string) {
+    if (!this.game.meta.isStarted && !this.game.meta.isComplete) {
+      return;
+      // toast game hasnt started
+    }
+    this.router.navigate(['/nba/game', this.date, this.game.meta.gameId]);
   }
 }

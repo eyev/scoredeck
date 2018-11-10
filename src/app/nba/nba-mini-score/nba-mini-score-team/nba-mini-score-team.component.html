@@ -11,7 +11,8 @@
   <div class="quarter" [class.active]="meta.isOvertime && !meta.isComplete" *ngIf="meta.isOvertime">
     {{team.quarters[4]}}
   </div>
-  <div class="quarter" [class.active]="meta.isComplete" [class.winner]="isWinner && team.total !== '0'" [class.loser]="!isWinner && team.total !== '0'">
+  <div class="quarter total" [class.active]="meta.isComplete" [class.winner]="isWinner && team.total !== '0'"
+    [class.loser]="!isWinner && team.total !== '0'">
     <span *ngIf="team.total !== '0'">
       {{team.total}}
     </span>

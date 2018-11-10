@@ -1,20 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { Observable, of } from 'rxjs';
+
 import { LoadingBarService } from '@ngx-loading-bar/core';
+
+import { AppSettingsQuery } from './shared/app-settings/state/app-settings.query';
+import { AppSettingsService } from './shared/app-settings/state/app-settings.service';
+import { AppSettings } from './shared/app-settings/state/app-settings.store';
 
 @Component({
   selector: 'sd-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isLogoActive = false;
+  appSettings: Observable<AppSettings> = of();
+
   constructor(
     public loader: LoadingBarService,
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
+    private appSettingsService: AppSettingsService,
+    private appSettingsQuery: AppSettingsQuery,
   ) {
     this.matIconRegistry.addSvgIcon(
       'nfl',
@@ -41,6 +51,17 @@ export class AppComponent {
       ),
     );
   }
+
+  ngOnInit() {
+    this.appSettings = this.appSettingsQuery.select();
+  }
+
+  toggleTheme(theme: string) {
+    this.appSettingsService.set({
+      theme,
+    });
+  }
+
   toggleLogoActive(active: boolean) {
     this.isLogoActive = active;
   }

@@ -1,3 +1,9 @@
+:host {
+  padding-right: 5rem;
+  display: flex;
+  border-bottom: 0.063rem solid rgba(#000, 0.2);
+}
+
 section.day {
   display: flex;
   flex-direction: column;
@@ -14,7 +20,6 @@ section.day {
 h2 {
   font-weight: 400;
   font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 1rem;
 }
 .live-game {

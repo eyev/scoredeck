@@ -1,0 +1,102 @@
+@import '~@angular/material/theming';
+
+section.team {
+  width: calc(50% - 5rem);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+}
+
+section.team:first-child {
+  justify-content: flex-end;
+  margin-right: 1rem;
+  div.team-details div {
+    text-align: right;
+  }
+}
+section.team:last-child {
+  justify-content: flex-start;
+  margin-left: 1rem;
+  div.team-details div {
+    text-align: left;
+  }
+}
+div.team-details {
+  h2 {
+    margin-bottom: 0;
+  }
+  h2.full-name {
+    display: none;
+    @media screen and (min-width: 850px) {
+      display: block;
+    }
+  }
+  h2.tricode-name {
+    display: block;
+    @media screen and (min-width: 850px) {
+      display: none;
+    }
+  }
+  div {
+    font-size: 0.75rem;
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+  }
+}
+div.team-logo img {
+  margin-right: 0.5rem;
+  height: 5rem;
+  width: 7rem;
+  display: none;
+  @media screen and (min-width: 550px) {
+    display: flex;
+  }
+}
+div.team-score {
+  margin: 0 1rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  font-size: 1.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  @media screen and (min-width: 550px) {
+    font-size: 2rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+section.tiny-score {
+  display: flex;
+  width: 10rem;
+  flex-direction: column;
+  font-size: 0.65rem;
+  line-height: 1rem;
+  .key {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .team {
+    .team-name {
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+  }
+  .key,
+  .team {
+    display: flex;
+    flex-direction: row;
+    .team-name {
+      width: 1.75rem;
+    }
+    .quarter {
+      margin: 0 0.25rem;
+      display: flex;
+      width: 0.85rem;
+      justify-content: center;
+    }
+  }
+}
+
+.clock {
+  text-align: center;
+}

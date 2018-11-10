@@ -8,6 +8,6 @@
     </div>
   </h2>
   <section class="scores">
-    <sd-nba-mini-score *ngFor="let game of day.games" [game]="game"></sd-nba-mini-score>
+    <sd-nba-mini-score *ngFor="let game of day.games" [game]="game" [date]="day.id"></sd-nba-mini-score>
   </section>
 </section>

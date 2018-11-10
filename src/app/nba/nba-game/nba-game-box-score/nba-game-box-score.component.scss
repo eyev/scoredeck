@@ -1,0 +1,60 @@
+@import '~@angular/material/theming';
+@import '../../../shared/variables.scss';
+
+:host {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.table-container {
+  width: 100%;
+  overflow: auto;
+  position: relative;
+  @extend %scrollbar;
+}
+
+tr.mat-header-row {
+  height: 45px;
+  @include mat-elevation(3);
+}
+
+td.mat-cell,
+th.mat-header-cell {
+  min-width: 4rem;
+  text-align: center;
+}
+
+td.mat-cell {
+  &.cdk-column-shortName {
+    text-align: left;
+    min-width: 10rem;
+  }
+}
+
+th.mat-header-cell {
+  border-bottom-color: transparent;
+
+  &:first-of-type {
+    text-align: left;
+  }
+}
+
+tr.mat-row {
+  height: 2.45rem;
+  transition: background 0.1s ease-in-out;
+  &:hover {
+    background: rgba(#000, 0.1);
+    td.mat-cell.cdk-column-shortName {
+      font-weight: 500;
+    }
+  }
+}
+
+tr.mat-row:nth-child(5) {
+  td {
+    border-bottom: 1px solid rgba(#111, 0.4);
+  }
+}

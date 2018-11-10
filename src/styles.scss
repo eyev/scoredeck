@@ -95,24 +95,141 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+::selection {
+  background: #e65100;
+  color: #fff;
+}
+::-moz-selection {
+  background: #e65100;
+  color: #fff;
+}
+
 // material
-.mat-drawer-backdrop.mat-drawer-shown {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-mat-sidenav-content.mat-drawer-content.mat-sidenav-content {
-  background: #212121;
-}
 
 button.navigation-button .mat-button-wrapper {
   padding: 0.55rem 0;
 }
+
 button.navigation-button .mat-button-wrapper .mat-icon {
   font-size: 2.5rem !important;
   height: 2.5rem;
   width: 2.5rem;
 }
-sd-nba-day {
-  padding-right: 5rem;
-  display: flex;
-  border-bottom: 0.063rem solid rgba(255, 255, 255, 0.1);
+
+.box-score-table .mat-sort-header-container {
+  justify-content: center;
+  margin-left: 1rem;
+}
+
+// table (theme)
+th.mat-header-cell,
+td.mat-cell {
+  .day-theme & {
+    color: #111;
+  }
+
+  &.cdk-column-points,
+  &.cdk-column-assists,
+  &.cdk-column-totReb {
+    background: rgba(#fff, 0.05);
+    .day-theme & {
+      background: rgba(#000, 0.1);
+    }
+  }
+  &.cdk-column-shortName {
+    background-color: #2d2d2d;
+    .day-theme & {
+      background-color: #fff;
+    }
+  }
+}
+
+th.mat-header-cell {
+  background: #2d2d2d;
+  .day-theme & {
+    background: #fff;
+  }
+  &:first-of-type {
+    border-bottom-color: transparent;
+    .day-theme & {
+      border-bottom-color: transparent;
+    }
+  }
+  &.cdk-column-points,
+  &.cdk-column-assists,
+  &.cdk-column-totReb {
+    background: rgba(#fff, 0.05);
+    .day-theme & {
+      background: rgba(#000, 0.1);
+    }
+  }
+}
+
+.mat-table {
+  background: transparent !important;
+}
+
+// quarter (theme styles)
+
+.day-theme .quarter.active {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+.day-theme .score-key {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+// game-stats
+sd-nba-game-team-stats {
+  .stat {
+    background: rgb(42, 42, 42);
+    .day-theme & {
+      background: rgba(#000, 0.1);
+    }
+  }
+
+  span.value,
+  span.sub-value {
+    color: #fff;
+    .day-theme & {
+      color: #111;
+    }
+  }
+
+  span.label {
+    background: rgba(#fff, 0.1);
+    color: rgba(#fff, 0.75);
+    .day-theme & {
+      background: rgba(#000, 0.1);
+      color: rgba(#000, 0.75);
+    }
+  }
+}
+sd-nba-game {
+  section.team {
+    &:first-child {
+      border-bottom: 1px solid rgba(#fff, 0.1);
+      @media screen and (min-width: 1400px) {
+        border-right: 1px solid rgba(#fff, 0.1);
+        .day-theme & {
+          border-right: 1px solid rgba(#000, 0.1);
+        }
+        border-bottom: none;
+      }
+      .day-theme & {
+        border-bottom: 1px solid rgba(#000, 0.1);
+      }
+    }
+    &:last-child {
+      border-top: 1px solid rgba(#fff, 0.1);
+      .day-theme & {
+        border-top: 1px solid rgba(#000, 0.1);
+      }
+      @media screen and (min-width: 1400px) {
+        border-left: 1px solid rgba(#fff, 0.1);
+        .day-theme & {
+          border-left: 1px solid rgba(#000, 0.1);
+        }
+      }
+    }
+  }
 }

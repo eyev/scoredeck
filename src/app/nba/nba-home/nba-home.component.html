@@ -1,7 +1,9 @@
-<sd-nba-day *ngFor="let day of days | async" [day]="day" [isLive]="isLive(day.id)"></sd-nba-day>
-<button mat-fab class="navigation-button next-button">
+<div #scrollContainer style="height: calc(100vh - 64px); max-width: 100vw; overflow-y: auto">
+  <sd-nba-day *ngFor="let day of days | async" [day]="day" [isLive]="isLive(day.id)"></sd-nba-day>
+</div>
+<button mat-fab class="navigation-button next-button" (click)="getNext()">
   <mat-icon aria-label="Example icon-button with a heart icon">keyboard_arrow_up</mat-icon>
 </button>
-<button mat-fab class="navigation-button previous-button">
+<button mat-fab class="navigation-button previous-button" (click)="getPrevious()">
   <mat-icon aria-label="Example icon-button with a heart icon">keyboard_arrow_down</mat-icon>
 </button>

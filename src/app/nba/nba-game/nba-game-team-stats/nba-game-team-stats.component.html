@@ -1,0 +1,128 @@
+<section class="team-stats">
+
+  <div class="team-stat rebounding">
+    <h3>Offensive</h3>
+    <div class="team-stat-container">
+      <div class="stat multi-line">
+        <span class="label">
+          Field Goals
+        </span>
+        <span class="value">
+          {{stats.fgm}} / {{stats.fga}}
+        </span>
+        <span class="sub-value">
+          {{stats.fgp}}% <img src="/assets/icons/fire.svg" *ngIf="isLit('fgp', stats.fgp)">
+        </span>
+
+      </div>
+      <div class="stat multi-line">
+        <span class="label">
+          3PT
+        </span>
+        <span class="value">
+          {{stats.tpa}} / {{stats.tpm}}
+        </span>
+        <span class="sub-value">
+          {{stats.tpp}}% <img src="/assets/icons/fire.svg" *ngIf="isLit('tpp', stats.tpp)">
+        </span>
+
+      </div>
+      <div class="stat multi-line">
+        <span class="label">
+          Free Throws
+        </span>
+        <span class="value">
+          {{stats.ftm}} / {{stats.fta}}
+        </span>
+        <span class="sub-value">
+          {{stats.ftp}}% <img src="/assets/icons/fire.svg" *ngIf="isLit('ftp', stats.ftp)">
+        </span>
+      </div>
+      <div class="stat">
+        <span class="label">
+          Assists
+        </span>
+        <span class="value">
+          {{stats.assists}} <img src="/assets/icons/fire.svg" *ngIf="isLit('assists', stats.assists)">
+        </span>
+      </div>
+      <div class="stat">
+        <span class="label">
+          Fast Break Points
+        </span>
+        <span class="value">
+          {{stats.fastBreakPoints}}
+        </span>
+      </div>
+      <div class="stat">
+        <span class="label">
+          2nd Chance Points
+        </span>
+        <span class="value">
+          {{stats.secondChancePoints}}
+        </span>
+      </div>
+      <div class="stat">
+        <span class="label">
+          Turnovers
+        </span>
+        <span class="value">
+          {{stats.turnovers}}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-stat defense">
+    <h3>Defensive</h3>
+    <div class="team-stat-container">
+      <div class="stat">
+        <span class="label">
+          Steals
+        </span>
+        <span class="value">
+          {{stats.steals}} <img src="/assets/icons/fire.svg" *ngIf="isLit('steals', stats.steals)">
+        </span>
+
+      </div>
+      <div class="stat">
+        <span class="label">
+          Blocks
+        </span>
+        <span class="value">
+          {{stats.blocks}} <img src="/assets/icons/fire.svg" *ngIf="isLit('blocks', stats.blocks)">
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="team-stat rebounding">
+    <h3>Rebounding</h3>
+    <div class="team-stat-container">
+      <div class="stat">
+        <span class="label">
+          Total Rebounds
+        </span>
+        <span class="value">
+          {{stats.totReb}} <img src="/assets/icons/fire.svg" *ngIf="isLit('totReb', stats.totReb)">
+        </span>
+      </div>
+      <div class="stat">
+        <span class="label">
+          Offensive Rebounds
+        </span>
+        <span class="value">
+          {{stats.offReb}} <img src="/assets/icons/fire.svg" *ngIf="isLit('offReb', stats.offReb)">
+        </span>
+      </div>
+      <div class="stat">
+        <span class="label">
+          Defensive Rebounds
+        </span>
+        <span class="value">
+          {{stats.defReb}} <img src="/assets/icons/fire.svg" *ngIf="isLit('offReb', stats.defReb)">
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

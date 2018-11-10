@@ -9,16 +9,16 @@ header {
 span.clock {
   display: flex;
   padding: 0.25rem 0.5rem;
-  background: #212121;
+  background: rgba(0, 0, 0, 0.15);
   position: relative;
   text-align: right;
 }
 span.clock:before {
   position: absolute;
-  left: -1.35rem;
+  left: -1.375rem;
   top: 0;
   content: '';
-  border-top: 22px solid #212121;
+  border-top: 22px solid rgba(0, 0, 0, 0.15);
   border-left: 22px solid transparent;
 }
 

@@ -1,9 +1,7 @@
 // Import theming functions
-@import '~@angular/material/theming';
-@import './shared/theme';
 
 .sidenav-container {
-  height: 100%;
+  height: 100vh;
 }
 
 .sidenav {
@@ -14,12 +12,19 @@
   position: sticky;
   top: 0;
   background-color: #212121;
+  z-index: 3;
+  .day-theme & {
+    background-color: #fff;
+  }
 }
 .logo {
   font-size: 1.75rem;
   font-family: 'K2D', sans-serif;
   color: #fff;
   margin-bottom: 0.45rem;
+  .day-theme & {
+    color: #212121;
+  }
 }
 mat-toolbar {
   .mat-sidenav & {
@@ -27,6 +32,9 @@ mat-toolbar {
   }
   .logo {
     cursor: pointer;
+    &:focus {
+      outline: none;
+    }
     &.active .nba-icon {
       transform: translate3d(0, 0, 0);
       animation-name: dribble;
@@ -40,15 +48,23 @@ mat-toolbar {
       animation-play-state: running;
     }
     .nba-icon {
-      margin-left: 0.1rem;
-      width: 20px;
-      height: 20px;
+      width: 1.75rem;
+      height: 1.6rem;
+      vertical-align: bottom;
+      margin-left: -0.15rem;
+      margin-bottom: 0.2rem;
     }
   }
 }
-
+.app-container {
+  min-height: 100vh;
+}
 @keyframes dribble {
   100% {
     transform: translate3d(0, -8px, 0);
   }
+}
+
+.spacer {
+  flex: 1 1 auto;
 }

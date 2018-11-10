@@ -1,0 +1,82 @@
+<mat-toolbar class="mat-elevation-z6">
+  <section class="team">
+    <div class="team-logo">
+      <img src="/assets/logos/nba/teams/{{game.away.shortName}}/{{game.away.shortName}}.svg">
+    </div>
+    <div class="team-details">
+      <h2 class="full-name">{{game.away.name}}</h2>
+      <h2 class="tricode-name">{{game.away.shortName}}</h2>
+      <div>{{game.away.record}}</div>
+    </div>
+    <div class="team-score">
+      {{game.away.total}}
+    </div>
+  </section>
+  <section class="tiny-score">
+    <div class="key">
+      <div class="team-name"></div>
+      <div class="quarter">Q1</div>
+      <div class="quarter">Q2</div>
+      <div class="quarter">Q3</div>
+      <div class="quarter">Q4</div>
+      <div class="quarter">T</div>
+    </div>
+    <div class="team">
+      <div class="team-name">{{game.away.shortName}}</div>
+      <div class="quarter" *ngFor="let score of game.away.quarters| slice:0:4; let i = index">
+        <span *ngIf="score">{{ score }}</span>
+        <span *ngIf="!score">&ndash;</span>
+      </div>
+      <div class="quarter" [class.active]="game.meta.isOvertime && !meta.isComplete" *ngIf="game.meta.isOvertime">
+        {{game.away.quarters[4]}}
+      </div>
+      <div class="quarter total" [class.active]="game.meta.isComplete">
+        <span *ngIf="game.away.total !== '0'">
+          {{game.away.total}}
+        </span>
+        <span *ngIf="game.away.total === '0'">
+          &mdash;
+        </span>
+      </div>
+    </div>
+    <div class="team">
+      <div class="team-name">{{game.home.shortName}}</div>
+      <div class="quarter" *ngFor="let score of game.home.quarters| slice:0:4; let i = index">
+        <span *ngIf="score">{{ score }}</span>
+        <span *ngIf="!score">&ndash;</span>
+      </div>
+      <div class="quarter" [class.active]="game.meta.isOvertime && !meta.isComplete" *ngIf="game.meta.isOvertime">
+        {{game.home.quarters[4]}}
+      </div>
+      <div class="quarter total" [class.active]="game.meta.isComplete">
+        <span *ngIf="game.home.total !== '0'">
+          {{game.home.total}}
+        </span>
+        <span *ngIf="game.home.total === '0'">
+          &mdash;
+        </span>
+      </div>
+    </div>
+    <div class="clock">
+      <span *ngIf="game.meta.isStarted">
+        {{getQuarter(game.meta.currentPeriod)}} Qtr. | {{game.meta.clock}}
+      </span>
+      <span *ngIf="game.meta.isComplete">
+        Final
+      </span>
+    </div>
+  </section>
+  <section class="team">
+    <div class="team-score">
+      {{game.home.total}}
+    </div>
+    <div class="team-details">
+      <h2 class="full-name">{{game.home.name}}</h2>
+      <h2 class="tricode-name">{{game.home.shortName}}</h2>
+      <div>{{game.home.record}}</div>
+    </div>
+    <div class="team-logo">
+      <img src="/assets/logos/nba/teams/{{game.home.shortName}}/{{game.home.shortName}}.svg">
+    </div>
+  </section>
+</mat-toolbar>

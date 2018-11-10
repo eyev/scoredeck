@@ -6,7 +6,7 @@ import { NbaHomeComponent } from './nba/nba-home/nba-home.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/nba',
+    redirectTo: '/nba/home',
     pathMatch: 'full',
   },
   {

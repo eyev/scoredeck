@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
+import { shareReplay, take, takeWhile, tap } from 'rxjs/operators';
 
+import { createMiniScore, MiniScore } from '../nba-mini-score/state/mini-score.model';
+import { MiniScoreQuery } from '../nba-mini-score/state/mini-score.query';
+import { MiniScoreService } from '../nba-mini-score/state/mini-score.service';
 import { NbaSchedule } from '../nba-schedule/nba-schedule';
-import { NbaScheduleService } from '../nba-schedule/nba-schedule.service';
-import { createMiniScore, MiniScore } from '../state/mini-score.model';
-import { MiniScoreQuery } from '../state/mini-score.query';
-import { MiniScoreService } from '../state/mini-score.service';
+import { NbaScheduleQuery } from '../nba-schedule/state/nba-schedule.query';
+import { NbaScheduleService } from '../nba-schedule/state/nba-schedule.service';
 
 @Component({
   selector: 'sd-nba-home',
@@ -14,38 +16,34 @@ import { MiniScoreService } from '../state/mini-score.service';
   styleUrls: ['./nba-home.component.scss'],
 })
 export class NbaHomeComponent implements OnInit {
+  @ViewChild('scrollContainer')
+  private scrollContainer: ElementRef;
   schedule: NbaSchedule[] = [];
   days: Observable<MiniScore[]> = of([]);
   activeGames: MiniScore[] | undefined = [createMiniScore({})];
   activeGamesRefresh: number | undefined = undefined;
-
+  isInit = false;
   constructor(
     private scheduleService: NbaScheduleService,
+    private scheduleQuery: NbaScheduleQuery,
     private miniScoreService: MiniScoreService,
     private miniScoreQuery: MiniScoreQuery,
   ) {}
 
   ngOnInit() {
-    this.scheduleService.getSchedule('2019').subscribe(season => {
-      // this.scheduleService.setSchedule(season, '2019');
+    this.scheduleService.getSchedule('2018').subscribe(season => {
       this.schedule = season;
-      if (this.miniScoreQuery.getSnapshot().ids.length === 0) {
-        const closestDay = this.scheduleService.getNearestGame(season);
-        const initialDays = [
-          this.schedule[this.schedule.indexOf(closestDay) - 1],
-          this.schedule[this.schedule.indexOf(closestDay) - 2],
-          this.schedule[this.schedule.indexOf(closestDay) - 3],
-          this.schedule[this.schedule.indexOf(closestDay) - 4],
-          this.schedule[this.schedule.indexOf(closestDay) - 5],
-          this.schedule[this.schedule.indexOf(closestDay) - 6],
-        ];
-        initialDays.forEach(day => {
-          if (day) {
-            this.miniScoreService.getDay(day.apiDate);
-          }
-        });
-      }
+      this.scheduleService.setSchedule(season, '2018');
     });
+
+    this.scheduleQuery
+      .select(schedule => schedule)
+      .pipe(take(2))
+      .subscribe(schedule => {
+        schedule.loadedGames.forEach(day =>
+          this.miniScoreService.getDay(day.apiDate),
+        );
+      });
 
     this.days = this.miniScoreQuery.selectAll();
     this.days.subscribe(entity => {
@@ -64,7 +62,6 @@ export class NbaHomeComponent implements OnInit {
   }
 
   setRefresh() {
-    console.log(this.activeGames);
     window.clearInterval(this.activeGamesRefresh);
 
     if (this.activeGames[0].id) {
@@ -72,6 +69,35 @@ export class NbaHomeComponent implements OnInit {
         this.miniScoreService.refreshDay(this.activeGames[0].id.toString());
       }, 30000);
     }
+  }
+
+  getNext() {
+    const nextGameId = this.scheduleQuery.getSnapshot().loadedGames[0].id + 1;
+    this.scheduleQuery
+      .selectOnce(state => state.schedule.filter(day => day.id === nextGameId))
+      .subscribe(day => {
+        this.scheduleService.setLoadedGames(day[0], true);
+        this.miniScoreService.getDay(day[0].apiDate);
+      });
+  }
+  getPrevious() {
+    const loadedGames = this.scheduleQuery.getSnapshot().loadedGames;
+    const prevGameId = loadedGames[loadedGames.length - 1].id - 1;
+    if (prevGameId < 0) {
+      return;
+    }
+    this.scheduleQuery
+      .selectOnce(state => state.schedule.filter(day => day.id === prevGameId))
+      .pipe(
+        tap(() => {
+          this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
+          console.log(this.scrollContainer);
+        }),
+      )
+      .subscribe(day => {
+        this.scheduleService.setLoadedGames(day[0], false);
+        this.miniScoreService.getDay(day[0].apiDate);
+      });
   }
 
   isLive(dayId: string) {

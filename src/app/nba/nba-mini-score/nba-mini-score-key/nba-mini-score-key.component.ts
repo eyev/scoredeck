@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { MiniScoreMeta } from '../../state/mini-score.model';
+import { MiniScoreMeta } from '../state/mini-score.model';
 
 @Component({
   selector: 'sd-nba-mini-score-key',

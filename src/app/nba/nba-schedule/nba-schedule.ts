@@ -3,4 +3,5 @@ export interface NbaSchedule {
   apiDate: string;
   games: number;
   isPlayoffs?: boolean;
+  id: number;
 }

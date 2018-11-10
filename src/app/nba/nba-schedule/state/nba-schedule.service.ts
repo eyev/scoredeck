@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
+import { push, unshift } from '@datorama/akita';
+
 import { NbaSchedule } from '../nba-schedule';
 import { createInitialState, NbaScheduleStore } from './nba-schedule.store';
 
@@ -37,6 +39,22 @@ export class NbaScheduleService {
         year,
       }),
     );
+  }
+
+  setLoadedGames(day: NbaSchedule, isNext: boolean) {
+    this.nbaScheduleStore.update(entity => {
+      if (isNext) {
+        return {
+          ...entity,
+          loadedGames: unshift(entity.loadedGames, day),
+        };
+      } else {
+        return {
+          ...entity,
+          loadedGames: push(entity.loadedGames, day),
+        };
+      }
+    });
   }
   getNearestGame(season: NbaSchedule[]) {
     const today = new Date();
