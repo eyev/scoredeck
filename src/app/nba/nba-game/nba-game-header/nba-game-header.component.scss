@@ -1,7 +1,7 @@
 @import '~@angular/material/theming';
 
 section.team {
-  width: calc(50% - 5rem);
+  width: calc(50vw - 5rem);
   display: flex;
   align-items: center;
   height: 100%;
@@ -73,14 +73,6 @@ section.tiny-score {
   flex-direction: column;
   font-size: 0.65rem;
   line-height: 1rem;
-  .key {
-    color: rgba(255, 255, 255, 0.4);
-  }
-  .team {
-    .team-name {
-      border-right: 1px solid rgba(255, 255, 255, 0.06);
-    }
-  }
   .key,
   .team {
     display: flex;
