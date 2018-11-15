@@ -19,6 +19,8 @@ export class NbaGameComponent implements OnInit {
   date = '';
   game: Observable<NbaGame> = of(createNbaGame());
   isLoading = true;
+  isLive = false;
+  activeGameRefresh: number | undefined = undefined;
   constructor(
     private route: ActivatedRoute,
     private nbaGameService: NbaGameService,
@@ -29,9 +31,27 @@ export class NbaGameComponent implements OnInit {
       this.date = params['date'];
       this.gameId = params['gameId'];
 
-      this.game = this.nbaGameService
-        .getGame(this.date, this.gameId)
-        .pipe(tap(() => (this.isLoading = false)));
+      this.game = this.loadGame();
     });
+  }
+  enableGameRefresh() {
+    window.clearInterval(this.activeGameRefresh);
+    this.activeGameRefresh = window.setInterval(() => {
+      this.game = this.loadGame();
+    }, 30000);
+  }
+
+  loadGame() {
+    return this.nbaGameService.getGame(this.date, this.gameId).pipe(
+      tap(game => {
+        this.isLive = game.meta.isStarted && !game.meta.isComplete;
+        if (this.isLive) {
+          this.enableGameRefresh();
+        } else {
+          window.clearInterval(this.activeGameRefresh);
+        }
+        this.isLoading = false;
+      }),
+    );
   }
 }

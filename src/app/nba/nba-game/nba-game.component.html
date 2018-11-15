@@ -1,24 +1,46 @@
 <div class="game" *ngSubscribe="game as gameData">
   <div *ngIf="!isLoading">
     <sd-nba-game-header [game]="gameData"></sd-nba-game-header>
+    <div class="live-game" *ngIf="isLive">
+      <mat-icon aria-label="Side nav toggle icon">brightness_1</mat-icon>
+      <span> Live Games </span>
+    </div>
     <section class="game-details">
       <section class="team">
-        <h2> <img src="/assets/logos/nba/teams/{{gameData.away.shortName}}/{{gameData.away.shortName}}.svg">
-          {{gameData.away.name}}
+        <h2>
+          <img
+            src="/assets/logos/nba/teams/{{gameData.away.shortName}}/{{gameData.away.shortName}}.svg"
+          />
+          {{ gameData.away.name }}
         </h2>
-        <sd-nba-game-team-stats [stats]="gameData.away.teamStats" *ngIf="gameData"></sd-nba-game-team-stats>
-        <sd-nba-game-box-score [team]="gameData.away.name" [players]="gameData.away.players" *ngIf="gameData"></sd-nba-game-box-score>
+        <sd-nba-game-team-stats
+          [stats]="gameData.away.teamStats"
+          *ngIf="gameData"
+        ></sd-nba-game-team-stats>
+        <sd-nba-game-box-score
+          [team]="gameData.away.name"
+          [players]="gameData.away.players"
+          *ngIf="gameData"
+        ></sd-nba-game-box-score>
       </section>
       <section class="team">
-        <h2> <img src="/assets/logos/nba/teams/{{gameData.home.shortName}}/{{gameData.home.shortName}}.svg">
-          {{gameData.home.name}}
+        <h2>
+          <img
+            src="/assets/logos/nba/teams/{{gameData.home.shortName}}/{{gameData.home.shortName}}.svg"
+          />
+          {{ gameData.home.name }}
         </h2>
-        <sd-nba-game-team-stats [stats]="gameData.home.teamStats" *ngIf="gameData"></sd-nba-game-team-stats>
-        <sd-nba-game-box-score [team]="gameData.home.name" [players]="gameData.home.players" *ngIf="gameData"></sd-nba-game-box-score>
+        <sd-nba-game-team-stats
+          [stats]="gameData.home.teamStats"
+          *ngIf="gameData"
+        ></sd-nba-game-team-stats>
+        <sd-nba-game-box-score
+          [team]="gameData.home.name"
+          [players]="gameData.home.players"
+          *ngIf="gameData"
+        ></sd-nba-game-box-score>
       </section>
     </section>
   </div>
 </div>
-<div *ngIf="isLoading">
-  <sd-loading-spinner></sd-loading-spinner>
-</div>
+<div *ngIf="isLoading"><sd-loading-spinner></sd-loading-spinner></div>
