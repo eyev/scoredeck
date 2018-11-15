@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { ID } from '@datorama/akita';
 
@@ -17,13 +18,13 @@ export class MiniScoreService {
 
   getDay(date: string) {
     return this.http
-      .get<MiniScore>(`http://localhost:3000/preview/${date}`)
+      .get<MiniScore>(`${environment.apiUrl}preview/${date}`)
       .subscribe(miniScore => this.add(miniScore));
   }
 
   refreshDay(date: string) {
     return this.http
-      .get<MiniScore>(`http://localhost:3000/preview/${date}`)
+      .get<MiniScore>(`${environment.apiUrl}preview/${date}`)
       .subscribe(miniScore => this.update(miniScore.id, miniScore));
   }
 

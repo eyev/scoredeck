@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { NbaSchedule } from './nba-schedule';
 
@@ -12,7 +13,7 @@ export class NbaScheduleService {
   constructor(private http: HttpClient) {}
   getSchedule(year: string): Observable<NbaSchedule[]> {
     return this.http.get<NbaSchedule[]>(
-      `http://localhost:3000/schedule/${year}`,
+      `${environment.apiUrl}schedule/${year}`,
     );
   }
 
