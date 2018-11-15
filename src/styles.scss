@@ -204,32 +204,26 @@ sd-nba-game-team-stats {
     }
   }
 }
-sd-nba-game {
-  section.team {
-    &:first-child {
-      border-bottom: 1px solid rgba(#fff, 0.1);
-      @media screen and (min-width: 1400px) {
-        border-right: 1px solid rgba(#fff, 0.1);
-        .day-theme & {
-          border-right: 1px solid rgba(#000, 0.1);
-        }
-        border-bottom: none;
-      }
+
+section.tiny-score {
+  .key {
+    color: rgba(255, 255, 255, 0.4);
+    .day-theme & {
+      color: rgba(#000, 0.5);
+    }
+  }
+  .team {
+    .team-name {
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
       .day-theme & {
-        border-bottom: 1px solid rgba(#000, 0.1);
+        border-right: 1px solid rgba(#000, 0.1);
       }
     }
-    &:last-child {
-      border-top: 1px solid rgba(#fff, 0.1);
-      .day-theme & {
-        border-top: 1px solid rgba(#000, 0.1);
-      }
-      @media screen and (min-width: 1400px) {
-        border-left: 1px solid rgba(#fff, 0.1);
-        .day-theme & {
-          border-left: 1px solid rgba(#000, 0.1);
-        }
-      }
-    }
+  }
+}
+sd-loading-spinner {
+  background: rgba(#000, 0.8);
+  .day-theme & {
+    background: rgba(#fff, 0.8);
   }
 }
