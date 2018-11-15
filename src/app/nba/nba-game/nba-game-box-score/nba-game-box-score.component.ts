@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
 
 import { NbaGamePlayer } from '../nba-game';
+import { playerOnFire } from '../on-fire-key';
 
 @Component({
   selector: 'sd-nba-game-box-score',
@@ -40,5 +41,8 @@ export class NbaGameBoxScoreComponent implements OnInit {
   }
   get teamName() {
     return this.team.substring(this.team.lastIndexOf(' ') + 1);
+  }
+  isLit(key: string, value: string): boolean {
+    return +value > playerOnFire[key];
   }
 }

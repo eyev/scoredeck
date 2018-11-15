@@ -1,80 +1,153 @@
 <div class="table-container mat-elevation-z5 box-score-table">
-  <!-- <div class="starters-label">STARTERS</div>
-  <div class="bench-label">BENCH</div> -->
+  <!--
+    <div class="starters-label">STARTERS</div>
+    <div class="bench-label">BENCH</div>
+  -->
 
   <table mat-table [dataSource]="dataSource" matSort matSortStart="desc">
     <ng-container matColumnDef="shortName" sticky>
-      <th mat-header-cell *matHeaderCellDef>{{teamName}}</th>
-      <td mat-cell *matCellDef="let element" [matTooltip]="element.fullName" matTooltipPosition="right">
-        {{element.shortName}} </td>
+      <th mat-header-cell *matHeaderCellDef>{{ teamName }}</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [matTooltip]="element.fullName"
+        matTooltipPosition="right"
+      >
+        {{ element.shortName }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="points">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> PTS </th>
-      <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PTS</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [class.lit-af]="isLit('points', element.points)"
+      >
+        {{ element.points }}
+        <img
+          src="/assets/icons/fire.svg"
+          *ngIf="isLit('points', element.points)"
+        />
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="min">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Min </th>
-      <td mat-cell *matCellDef="let element"> {{element.min}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Min</th>
+      <td mat-cell *matCellDef="let element">{{ element.min }}</td>
     </ng-container>
 
     <ng-container matColumnDef="fgm">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> FG </th>
-      <td mat-cell *matCellDef="let element"> {{element.fgm}}-{{element.fga}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>FG</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.fgm }}-{{ element.fga }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="tpm">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> 3P </th>
-      <td mat-cell *matCellDef="let element"> {{element.tpm}}-{{element.tpa}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>3P</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [class.lit-af]="isLit('tpm', element.tpm)"
+      >
+        {{ element.tpm }}-{{ element.tpa }}
+        <img src="/assets/icons/fire.svg" *ngIf="isLit('tpm', element.tpm)" />
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="offReb">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> OREB </th>
-      <td mat-cell *matCellDef="let element"> {{element.offReb}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>OREB</th>
+      <td mat-cell *matCellDef="let element">{{ element.offReb }}</td>
     </ng-container>
 
     <ng-container matColumnDef="defReb">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> DREB </th>
-      <td mat-cell *matCellDef="let element"> {{element.defReb}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>DREB</th>
+      <td mat-cell *matCellDef="let element">{{ element.defReb }}</td>
     </ng-container>
 
     <ng-container matColumnDef="totReb">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> REB </th>
-      <td mat-cell *matCellDef="let element"> {{element.totReb}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>REB</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [class.lit-af]="isLit('totReb', element.totReb)"
+      >
+        {{ element.totReb }}
+        <img
+          src="/assets/icons/fire.svg"
+          *ngIf="isLit('totReb', element.totReb)"
+        />
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="assists">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> AST </th>
-      <td mat-cell *matCellDef="let element"> {{element.assists}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>AST</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [class.lit-af]="isLit('assists', element.assists)"
+      >
+        {{ element.assists }}
+        <img
+          src="/assets/icons/fire.svg"
+          *ngIf="isLit('assists', element.assists)"
+        />
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="steals">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> STL </th>
-      <td mat-cell *matCellDef="let element"> {{element.steals}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>STL</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [class.lit-af]="isLit('steals', element.steals)"
+      >
+        {{ element.steals }}
+        <img
+          src="/assets/icons/fire.svg"
+          *ngIf="isLit('steals', element.steals)"
+        />
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="blocks">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> BLK </th>
-      <td mat-cell *matCellDef="let element"> {{element.blocks}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>BLK</th>
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [class.lit-af]="isLit('blocks', element.blocks)"
+      >
+        {{ element.blocks }}
+        <img
+          src="/assets/icons/fire.svg"
+          *ngIf="isLit('blocks', element.blocks)"
+        />
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="turnovers">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> TO </th>
-      <td mat-cell *matCellDef="let element"> {{element.turnovers}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>TO</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.turnovers }}
+        <img
+          src="/assets/icons/tombstone-solid.svg"
+          *ngIf="isLit('turnovers', element.turnovers)"
+        />
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="pFouls">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> PF </th>
-      <td mat-cell *matCellDef="let element"> {{element.pFouls}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PF</th>
+      <td mat-cell *matCellDef="let element">{{ element.pFouls }}</td>
     </ng-container>
 
     <ng-container matColumnDef="plusMinus">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> +/- </th>
-      <td mat-cell *matCellDef="let element"> {{element.plusMinus}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>+/-</th>
+      <td mat-cell *matCellDef="let element">{{ element.plusMinus }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>

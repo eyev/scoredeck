@@ -28,6 +28,13 @@ th.mat-header-cell {
 }
 
 td.mat-cell {
+  &.lit-af {
+    font-weight: 500;
+  }
+  img {
+    max-height: 0.8rem;
+    padding-left: 0.15rem;
+  }
   &.cdk-column-shortName {
     text-align: left;
     min-width: 10rem;
