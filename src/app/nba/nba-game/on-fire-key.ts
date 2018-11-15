@@ -8,6 +8,7 @@ export const teamOnFire = {
   tpp: 40,
   fgp: 50,
   ftp: 90,
+  turnovers: 16,
 };
 
 export const playerOnFire = {
@@ -17,4 +18,6 @@ export const playerOnFire = {
   blocks: 4,
   steals: 4,
   tpp: 55,
+  tpm: 10,
+  turnovers: 5,
 };
