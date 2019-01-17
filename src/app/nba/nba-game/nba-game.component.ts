@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { fadeIn } from 'src/app/shared/animation-library';
 
+import { NbaScheduleService } from '../nba-schedule/state/nba-schedule.service';
 import { createNbaGame, NbaGame } from './nba-game';
 import { NbaGameService } from './nba-game.service';
 
@@ -15,22 +16,25 @@ import { NbaGameService } from './nba-game.service';
   animations: [fadeIn],
 })
 export class NbaGameComponent implements OnInit {
-  gameId = '';
-  date = '';
   game: Observable<NbaGame> = of(createNbaGame());
   isLoading = true;
   isLive = false;
   activeGameRefresh: number | undefined = undefined;
+  prettyDate: Date = new Date();
+  private gameId = '';
+  private date = '';
+
   constructor(
     private route: ActivatedRoute,
     private nbaGameService: NbaGameService,
+    private nbaScheduleService: NbaScheduleService,
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.date = params['date'];
       this.gameId = params['gameId'];
-
+      this.prettyDate = this.nbaScheduleService.convertDateString(this.date);
       this.game = this.loadGame();
     });
   }

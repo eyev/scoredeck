@@ -48,6 +48,12 @@ section.team {
   max-height: 3rem;
   margin-right: 1rem;
 }
+.game-time-location {
+  padding: 1rem;
+  span.date {
+    font-size: 1.25rem;
+  }
+}
 .live-game {
   font-size: 0.9rem;
   display: inline-flex;

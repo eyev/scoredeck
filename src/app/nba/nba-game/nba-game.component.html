@@ -1,15 +1,26 @@
 <div class="game" *ngSubscribe="game as gameData">
   <div *ngIf="!isLoading">
     <sd-nba-game-header [game]="gameData"></sd-nba-game-header>
-    <div class="live-game" *ngIf="isLive">
-      <mat-icon aria-label="Side nav toggle icon">brightness_1</mat-icon>
-      <span> Live Game</span>
-    </div>
+    <section class="game-time-location">
+      <div>
+        <span class="date"> {{ prettyDate | date: 'fullDate' }} </span>
+      </div>
+      <div>
+        {{ gameData.meta.arena.name }}
+        <div class="live-game" *ngIf="isLive">
+          <mat-icon aria-label="Side nav toggle icon">brightness_1</mat-icon>
+          <span> Live Game</span>
+        </div>
+      </div>
+    </section>
+
     <section class="game-details">
       <section class="team">
         <h2>
           <img
-            src="/assets/logos/nba/teams/{{gameData.away.shortName}}/{{gameData.away.shortName}}.svg"
+            src="/assets/logos/nba/teams/{{ gameData.away.shortName }}/{{
+              gameData.away.shortName
+            }}.svg"
           />
           {{ gameData.away.name }}
         </h2>
@@ -26,7 +37,9 @@
       <section class="team">
         <h2>
           <img
-            src="/assets/logos/nba/teams/{{gameData.home.shortName}}/{{gameData.home.shortName}}.svg"
+            src="/assets/logos/nba/teams/{{ gameData.home.shortName }}/{{
+              gameData.home.shortName
+            }}.svg"
           />
           {{ gameData.home.name }}
         </h2>
