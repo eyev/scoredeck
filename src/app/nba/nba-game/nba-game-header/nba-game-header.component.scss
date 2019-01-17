@@ -33,26 +33,35 @@ div.team-details {
     }
   }
   h2.tricode-name {
-    display: block;
+    display: none;
+    @media screen and (min-width: 550px) {
+      display: block;
+    }
     @media screen and (min-width: 850px) {
       display: none;
     }
   }
-  div {
+  div.record {
     font-size: 0.75rem;
     line-height: 1;
     font-weight: 400;
     letter-spacing: 0.1rem;
+    display: none;
+    @media screen and (min-width: 550px) {
+      display: block;
+    }
+    @media screen and (min-width: 850px) {
+      display: none;
+    }
   }
 }
 div.team-logo img {
   margin-right: 0.5rem;
   height: 5rem;
-  width: 7rem;
-  display: none;
-  @media screen and (min-width: 550px) {
-    display: flex;
-  }
+  width: 5rem;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  display: flex;
 }
 div.team-score {
   margin: 0 1rem;
