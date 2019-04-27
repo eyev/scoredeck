@@ -7,12 +7,10 @@ import { MiniScoreMeta } from '../state/mini-score.model';
   templateUrl: './nba-mini-score-header.component.html',
   styleUrls: ['./nba-mini-score-header.component.scss'],
 })
-export class NbaMiniScoreHeaderComponent implements OnInit {
+export class NbaMiniScoreHeaderComponent {
   @Input()
   meta: MiniScoreMeta;
-  constructor() {}
 
-  ngOnInit() {}
   getQuarter(quarter: number) {
     if (quarter === 1) {
       return '1st';

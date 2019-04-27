@@ -1,6 +1,18 @@
 <div class="mini-score" (click)="click(game.meta.gameId)" matRipple>
   <sd-nba-mini-score-header [meta]="game.meta"></sd-nba-mini-score-header>
   <sd-nba-mini-score-key [meta]="game.meta"></sd-nba-mini-score-key>
-  <sd-nba-mini-score-team [team]="game.away" [isWinner]="!isHomeWinner()" [meta]="game.meta"></sd-nba-mini-score-team>
-  <sd-nba-mini-score-team [team]="game.home" [isWinner]="isHomeWinner()" [meta]="game.meta"></sd-nba-mini-score-team>
+  <sd-nba-mini-score-team
+    [team]="game.away"
+    [isWinner]="!isHomeWinner()"
+    [meta]="game.meta"
+  ></sd-nba-mini-score-team>
+  <sd-nba-mini-score-team
+    [team]="game.home"
+    [isWinner]="isHomeWinner()"
+    [meta]="game.meta"
+  ></sd-nba-mini-score-team>
+  <sd-nba-mini-score-footer
+    [meta]="game.meta"
+    *ngIf="game.meta.isPlayoffs"
+  ></sd-nba-mini-score-footer>
 </div>

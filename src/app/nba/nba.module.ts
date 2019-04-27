@@ -23,6 +23,7 @@ import {
 } from './nba-mini-score/nba-mini-score-team/nba-mini-score-team.component';
 import { NbaMiniScoreComponent } from './nba-mini-score/nba-mini-score.component';
 import { NbaRoutingModule } from './nba-routing.module';
+import { NbaMiniScoreFooterComponent } from './nba-mini-score/nba-mini-score-footer/nba-mini-score-footer.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, NbaRoutingModule],
@@ -38,6 +39,7 @@ import { NbaRoutingModule } from './nba-routing.module';
     NbaGameHeaderComponent,
     NbaGameBoxScoreComponent,
     NbaGameTeamStatsComponent,
+    NbaMiniScoreFooterComponent,
   ],
 })
 export class NbaModule {}

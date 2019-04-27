@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { MiniScoreGame } from './state/mini-score.model';
@@ -14,7 +15,7 @@ export class NbaMiniScoreComponent implements OnInit {
 
   @Input()
   date: string;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private snackbar: MatSnackBar) {}
 
   ngOnInit() {}
 
@@ -27,8 +28,10 @@ export class NbaMiniScoreComponent implements OnInit {
 
   click(id: string) {
     if (!this.game.meta.isStarted && !this.game.meta.isComplete) {
+      this.snackbar.open('Game has not started yet', 'Close', {
+        duration: 3000,
+      });
       return;
-      // toast game hasnt started
     }
     this.router.navigate(['/nba/game', this.date, this.game.meta.gameId]);
   }
