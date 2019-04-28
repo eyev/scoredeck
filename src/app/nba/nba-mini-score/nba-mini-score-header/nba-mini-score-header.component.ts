@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
+
+import { truncate } from 'fs';
 
 import { MiniScoreMeta } from '../state/mini-score.model';
 
@@ -30,6 +33,46 @@ export class NbaMiniScoreHeaderComponent {
 
     if (quarter > 4 && !this.meta.isComplete) {
       return 'OT';
+    }
+  }
+
+  getTime() {
+    switch (true) {
+      case this.meta.clock !== '' && !this.meta.isEndOfPeriod:
+        return `${this.getQuarter(+this.meta.currentPeriod)} Qtr | ${
+          this.meta.clock
+        }`;
+        break;
+
+      case this.meta.isEndOfPeriod &&
+        !this.meta.isHalftime &&
+        !this.meta.isComplete:
+        return `End of ${this.getQuarter(+this.meta.currentPeriod)} Qtr`;
+        break;
+
+      case this.meta.isHalftime:
+        return `Halftime`;
+        break;
+
+      case this.meta.isComplete:
+        return `Final`;
+        break;
+
+      case this.meta.clock === '' &&
+        this.meta.time !== '' &&
+        !this.meta.isComplete &&
+        !this.meta.isEndOfPeriod &&
+        !this.meta.isHalftime:
+        return `${this.meta.time}`;
+        break;
+
+      case this.meta.clock === '' &&
+        this.meta.time === '' &&
+        !this.meta.isComplete &&
+        !this.meta.isEndOfPeriod &&
+        !this.meta.isHalftime:
+        return `TBD`;
+        break;
     }
   }
 }
