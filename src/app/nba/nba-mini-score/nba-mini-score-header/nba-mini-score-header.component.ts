@@ -15,24 +15,30 @@ export class NbaMiniScoreHeaderComponent {
   meta: MiniScoreMeta;
 
   getQuarter(quarter: number) {
-    if (quarter === 1) {
-      return '1st';
-    }
-    if (quarter === 2) {
-      return '2nd';
-    }
-    if (quarter === 3) {
-      return '3rd';
-    }
-    if (quarter === 4 && !this.meta.isComplete) {
-      return '4th';
-    }
-    if (quarter === 4 && this.meta.isComplete) {
-      return 'Final';
-    }
+    switch (true) {
+      case quarter === 1:
+        return `1st`;
+        break;
 
-    if (quarter > 4 && !this.meta.isComplete) {
-      return 'OT';
+      case quarter === 2:
+        return `2nd`;
+        break;
+
+      case quarter === 3:
+        return `3rd`;
+        break;
+
+      case quarter === 4 && !this.meta.isComplete:
+        return `4th`;
+        break;
+
+      case quarter === 4 && this.meta.isComplete:
+        return `Final`;
+        break;
+
+      case quarter > 4 && !this.meta.isComplete:
+        return `OT`;
+        break;
     }
   }
 
