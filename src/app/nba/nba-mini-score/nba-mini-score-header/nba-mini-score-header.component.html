@@ -21,6 +21,7 @@
     class="clock"
     *ngIf="
       meta.clock === '' &&
+      meta.time !== '' &&
       !meta.isComplete &&
       !meta.isEndOfPeriod &&
       !meta.isHalftime
