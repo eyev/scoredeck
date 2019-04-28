@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 import { Observable, of } from 'rxjs';
 import { shareReplay, take, takeWhile, tap } from 'rxjs/operators';
@@ -28,6 +29,7 @@ export class NbaHomeComponent implements OnInit {
     private scheduleQuery: NbaScheduleQuery,
     private miniScoreService: MiniScoreService,
     private miniScoreQuery: MiniScoreQuery,
+    private snackbar: MatSnackBar,
   ) {}
 
   ngOnInit() {
@@ -36,14 +38,11 @@ export class NbaHomeComponent implements OnInit {
       this.scheduleService.setSchedule(season, '2018');
     });
 
-    this.scheduleQuery
-      .select(schedule => schedule)
-      .pipe(take(2))
-      .subscribe(schedule => {
-        schedule.loadedGames.forEach(day =>
-          this.miniScoreService.getDay(day.apiDate),
-        );
-      });
+    this.scheduleQuery.selectOnce(schedule => schedule).subscribe(schedule => {
+      schedule.loadedGames.forEach(day =>
+        this.miniScoreService.getDay(day.apiDate),
+      );
+    });
 
     this.days = this.miniScoreQuery.selectAll();
     this.days.subscribe(entity => {
@@ -73,6 +72,13 @@ export class NbaHomeComponent implements OnInit {
 
   getNext() {
     const nextGameId = this.scheduleQuery.getSnapshot().loadedGames[0].id + 1;
+    const lastGameId = this.scheduleQuery.getSnapshot().schedule.length;
+    if (nextGameId === lastGameId) {
+      this.snackbar.open('No future games available', 'Close', {
+        duration: 3000,
+      });
+      return;
+    }
     this.scheduleQuery
       .selectOnce(state => state.schedule.filter(day => day.id === nextGameId))
       .subscribe(day => {
@@ -84,6 +90,9 @@ export class NbaHomeComponent implements OnInit {
     const loadedGames = this.scheduleQuery.getSnapshot().loadedGames;
     const prevGameId = loadedGames[loadedGames.length - 1].id - 1;
     if (prevGameId < 0) {
+      this.snackbar.open('No previous games', 'Close', {
+        duration: 3000,
+      });
       return;
     }
     this.scheduleQuery
