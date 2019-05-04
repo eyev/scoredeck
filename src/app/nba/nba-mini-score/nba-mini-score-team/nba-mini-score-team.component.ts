@@ -24,4 +24,12 @@ export class NbaMiniScoreTeamComponent implements OnInit {
     }
     return +this.meta.currentPeriod === period + 1;
   }
+
+  getOverTimeScore() {
+    let score = 0;
+    this.team.quarters.map(
+      (quarter, i) => (i > 4 ? (score = +quarter + score) : false),
+    );
+    return score;
+  }
 }

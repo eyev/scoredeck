@@ -38,7 +38,7 @@
         [class.active]="game.meta.isOvertime && !game.meta.isComplete"
         *ngIf="game.meta.isOvertime"
       >
-        {{ game.away.quarters[4] }}
+        {{getOverTimeScore(game.away)}}
       </div>
       <div class="quarter total" [class.active]="game.meta.isComplete">
         <span *ngIf="game.away.total !== '0'"> {{ game.away.total }} </span>
@@ -59,7 +59,7 @@
         [class.active]="game.meta.isOvertime && !game.meta.isComplete"
         *ngIf="game.meta.isOvertime"
       >
-        {{ game.home.quarters[4] }}
+      {{getOverTimeScore(game.home)}}
       </div>
       <div class="quarter total" [class.active]="game.meta.isComplete">
         <span *ngIf="game.home.total !== '0'"> {{ game.home.total }} </span>

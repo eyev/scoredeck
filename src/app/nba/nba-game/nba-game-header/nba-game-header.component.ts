@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { NbaGame } from '../nba-game';
+import { NbaGame, NbaGameTeam } from '../nba-game';
 
 @Component({
   selector: 'sd-nba-game-header',
@@ -32,5 +32,13 @@ export class NbaGameHeaderComponent {
     if (quarter > 4 && !this.game.meta.isComplete) {
       return 'Overtime';
     }
+  }
+
+  getOverTimeScore(team: NbaGameTeam) {
+    let score = 0;
+    team.quarters.map(
+      (quarter, i) => (i > 4 ? (score = +quarter + score) : false),
+    );
+    return score;
   }
 }

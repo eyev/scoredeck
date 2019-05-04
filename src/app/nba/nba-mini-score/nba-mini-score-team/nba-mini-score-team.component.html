@@ -9,7 +9,7 @@
     <span *ngIf="!score">&ndash;</span>
   </div>
   <div class="quarter" [class.active]="meta.isOvertime && !meta.isComplete" *ngIf="meta.isOvertime">
-    {{team.quarters[4]}}
+    {{getOverTimeScore()}}
   </div>
   <div class="quarter total" [class.active]="meta.isComplete" [class.winner]="isWinner && team.total !== '0'"
     [class.loser]="!isWinner && team.total !== '0'">
