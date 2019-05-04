@@ -1,8 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-
-import { truncate } from 'fs';
-
 import { MiniScoreMeta } from '../state/mini-score.model';
 
 @Component({
