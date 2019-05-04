@@ -12,7 +12,6 @@ import { map } from 'rxjs/operators';
 export class AppUpdateComponent {
   isUpdateAvailable = of<boolean>();
   constructor(private swUpdate: SwUpdate) {
-    this.swUpdate.checkForUpdate();
     this.isUpdateAvailable = this.swUpdate.available.pipe(
       map(event => event.available.hash !== event.current.hash),
     );

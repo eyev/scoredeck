@@ -1,7 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ApplicationRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { shareReplay, take, takeWhile, tap } from 'rxjs/operators';
 
 import { createMiniScore, MiniScore } from '../nba-mini-score/state/mini-score.model';
@@ -24,12 +24,15 @@ export class NbaHomeComponent implements OnInit {
   activeGames: MiniScore[] | undefined = [createMiniScore({})];
   activeGamesRefresh: number | undefined = undefined;
   isInit = false;
+  private isAppStable: Subscription;
+
   constructor(
     private scheduleService: NbaScheduleService,
     private scheduleQuery: NbaScheduleQuery,
     private miniScoreService: MiniScoreService,
     private miniScoreQuery: MiniScoreQuery,
     private snackbar: MatSnackBar,
+    private appRef: ApplicationRef,
   ) {}
 
   ngOnInit() {
@@ -61,13 +64,19 @@ export class NbaHomeComponent implements OnInit {
   }
 
   setRefresh() {
-    window.clearInterval(this.activeGamesRefresh);
+    this.isAppStable = this.appRef.isStable.subscribe(ready => {
+      if (!ready) {
+        return;
+      }
 
-    if (this.activeGames[0].id) {
-      this.activeGamesRefresh = window.setInterval(() => {
-        this.miniScoreService.refreshDay(this.activeGames[0].id.toString());
-      }, 30000);
-    }
+      window.clearInterval(this.activeGamesRefresh);
+
+      if (this.activeGames[0].id) {
+        this.activeGamesRefresh = window.setInterval(() => {
+          this.miniScoreService.refreshDay(this.activeGames[0].id.toString());
+        }, 30000);
+      }
+    });
   }
 
   getNext() {

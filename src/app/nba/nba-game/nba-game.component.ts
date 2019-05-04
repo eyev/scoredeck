@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscriber, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { fadeIn } from 'src/app/shared/animation-library';
 
@@ -15,12 +15,13 @@ import { NbaGameService } from './nba-game.service';
   styleUrls: ['./nba-game.component.scss'],
   animations: [fadeIn],
 })
-export class NbaGameComponent implements OnInit {
+export class NbaGameComponent implements OnInit, OnDestroy {
   game: Observable<NbaGame> = of(createNbaGame());
   isLoading = true;
   isLive = false;
   activeGameRefresh: number | undefined = undefined;
   prettyDate: Date = new Date();
+  private isAppStable: Subscription;
   private gameId = '';
   private date = '';
 
@@ -28,6 +29,7 @@ export class NbaGameComponent implements OnInit {
     private route: ActivatedRoute,
     private nbaGameService: NbaGameService,
     private nbaScheduleService: NbaScheduleService,
+    private appRef: ApplicationRef,
   ) {}
 
   ngOnInit() {
@@ -38,11 +40,21 @@ export class NbaGameComponent implements OnInit {
       this.game = this.loadGame();
     });
   }
+
+  ngOnDestroy() {
+    this.isAppStable.unsubscribe();
+  }
+
   enableGameRefresh() {
-    window.clearInterval(this.activeGameRefresh);
-    this.activeGameRefresh = window.setInterval(() => {
-      this.game = this.loadGame();
-    }, 30000);
+    this.isAppStable = this.appRef.isStable.subscribe(ready => {
+      if (!ready) {
+        return;
+      }
+      window.clearInterval(this.activeGameRefresh);
+      this.activeGameRefresh = window.setInterval(() => {
+        this.game = this.loadGame();
+      }, 30000);
+    });
   }
 
   loadGame() {
