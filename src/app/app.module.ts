@@ -16,9 +16,10 @@ import { NbaModule } from './nba/nba.module';
 import { SharedModule } from './shared/shared.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AppUpdateComponent } from './core/app-update/app-update.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AppUpdateComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
