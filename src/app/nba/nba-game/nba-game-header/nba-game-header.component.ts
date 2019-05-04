@@ -14,23 +14,23 @@ export class NbaGameHeaderComponent {
 
   getQuarter(quarter: number) {
     if (quarter === 1) {
-      return '1st';
+      return '1st Qtr';
     }
     if (quarter === 2) {
-      return '2nd';
+      return '2nd Qtr';
     }
     if (quarter === 3) {
-      return '3rd';
+      return '3rd Qtr';
     }
     if (quarter === 4 && !this.game.meta.isComplete) {
-      return '4th';
+      return '4th Qtr';
     }
     if (quarter === 4 && this.game.meta.isComplete) {
       return 'Final';
     }
 
     if (quarter > 4 && !this.game.meta.isComplete) {
-      return 'OT';
+      return 'Overtime';
     }
   }
 }

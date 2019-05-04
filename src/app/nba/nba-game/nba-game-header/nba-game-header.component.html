@@ -15,12 +15,13 @@
     <div class="team-score">{{ game.away.total }}</div>
   </section>
   <section class="tiny-score">
-    <div class="key">
+    <div class="key" *ngIf="!quarter > 4">
       <div class="team-name"></div>
       <div class="quarter">Q1</div>
       <div class="quarter">Q2</div>
       <div class="quarter">Q3</div>
       <div class="quarter">Q4</div>
+      <div class="quarter" *ngIf="game.meta.isOvertime">OT</div>
       <div class="quarter">T</div>
     </div>
     <div class="team">
@@ -67,7 +68,7 @@
     </div>
     <div class="clock">
       <span *ngIf="game.meta.clock !== '' && !game.meta.isEndOfPeriod">
-        {{ getQuarter(game.meta.currentPeriod) }} Qtr | {{ game.meta.clock }}
+        {{ getQuarter(game.meta.currentPeriod) }} | {{ game.meta.clock }}
       </span>
       <span
         *ngIf="
