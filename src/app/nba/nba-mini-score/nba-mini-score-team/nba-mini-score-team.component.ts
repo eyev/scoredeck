@@ -28,7 +28,7 @@ export class NbaMiniScoreTeamComponent implements OnInit {
   getOverTimeScore() {
     let score = 0;
     this.team.quarters.map(
-      (quarter, i) => (i > 4 ? (score = +quarter + score) : false),
+      (quarter, i) => (i > 3 ? (score = +quarter + score) : false),
     );
     return score;
   }
