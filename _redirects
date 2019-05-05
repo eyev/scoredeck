@@ -1,2 +1,2 @@
-/api/*  https://scoredeck.azurewebsites.net/:splat  200
+/api/*  http://scoredeck.openode.io/:splat  200
 /*    /index.html   200
