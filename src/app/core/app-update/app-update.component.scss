@@ -3,10 +3,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 
 span {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   margin: 0 1rem;
   background-color: map_get($mat-orange, 900);
   padding: 0.1rem 1rem;
@@ -17,7 +18,7 @@ span {
 mat-icon {
   display: flex;
   align-self: center;
-  font-size: 1.25rem;
-  height: 1.25rem;
+  font-size: 1.15rem;
+  height: 1.2rem;
   width: 1.5rem;
 }
