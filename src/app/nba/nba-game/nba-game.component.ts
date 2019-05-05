@@ -1,7 +1,7 @@
 import { ApplicationRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable, of, Subscriber, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { fadeIn } from 'src/app/shared/animation-library';
 
