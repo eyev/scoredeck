@@ -1,4 +1,4 @@
-import { MiniScoreMeta, MiniScoreTeam } from '../nba-mini-score/state/mini-score.model';
+import { MiniScoreMeta, MiniScoreTeam } from '../../nba-mini-score/state/mini-score.model';
 
 export interface NbaGame {
   home: NbaGameTeam;
@@ -85,6 +85,7 @@ export function createNbaGame(): NbaGame {
       total: '',
       quarters: ['0', '0', '0', '0'],
       players: [],
+      teamId: '',
       teamStats: {
         fastBreakPoints: '',
         pointsInPaint: '',
@@ -117,6 +118,7 @@ export function createNbaGame(): NbaGame {
       total: '',
       quarters: ['0', '0', '0', '0'],
       players: [],
+      teamId: '',
       teamStats: {
         fastBreakPoints: '',
         pointsInPaint: '',
