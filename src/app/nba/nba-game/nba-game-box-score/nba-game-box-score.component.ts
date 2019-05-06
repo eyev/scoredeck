@@ -1,15 +1,15 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
 
-import { NbaGamePlayer } from '../nba-game';
 import { playerOnFire } from '../on-fire-key';
+import { NbaGamePlayer } from '../state/nba-game.model';
 
 @Component({
   selector: 'sd-nba-game-box-score',
   templateUrl: './nba-game-box-score.component.html',
   styleUrls: ['./nba-game-box-score.component.scss'],
 })
-export class NbaGameBoxScoreComponent implements OnInit {
+export class NbaGameBoxScoreComponent implements OnChanges, OnInit {
   @ViewChild(MatSort)
   sort: MatSort;
   @Input()
@@ -34,11 +34,14 @@ export class NbaGameBoxScoreComponent implements OnInit {
     'plusMinus',
   ];
   constructor() {}
+  ngOnChanges() {
+    this.dataSource = new MatTableDataSource(this.players);
+  }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.players);
     this.dataSource.sort = this.sort;
   }
+
   get teamName() {
     return this.team.substring(this.team.lastIndexOf(' ') + 1);
   }
