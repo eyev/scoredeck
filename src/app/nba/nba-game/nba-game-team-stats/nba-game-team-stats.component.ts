@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { NbaGameTeamStats } from '../nba-game';
 import { teamOnFire } from '../on-fire-key';
+import { NbaGameTeamStats } from '../state/nba-game.model';
 
 @Component({
   selector: 'sd-nba-game-team-stats',
