@@ -1,0 +1,30 @@
+<mat-form-field>
+  <mat-label>Select Quarter</mat-label>
+  <mat-select [(value)]="selected" (selectionChange)="loadPbp()">
+    <mat-option
+      *ngFor="let quarter of quarters"
+      [value]="quarter.id"
+      [attr.selected]="quarter.id === selected"
+    >
+      {{ quarter.name }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-list dense *ngIf="(pbp | async)">
+  <mat-list-item
+    *ngFor="let play of (pbp | async)"
+    [class.play-deadball]="isDeadBall(play.eventMsgType)"
+  >
+    <span class="play-clock"> {{ play.clock }}</span>
+    <img
+      class="team-icon"
+      *ngIf="play.teamId"
+      [src]="getTeamIcon(play.teamId)"
+    />
+    {{ play.formatted.description }}
+    <span class="score">( {{ play.vTeamScore }} - {{ play.hTeamScore }} )</span>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
+<div *ngIf="(isLoading | async)"><sd-loading-spinner></sd-loading-spinner></div>

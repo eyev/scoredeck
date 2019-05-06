@@ -1,0 +1,27 @@
+:host {
+  display: block;
+  padding: 1rem;
+}
+span.score {
+  display: flex;
+  margin-left: auto;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  min-width: 6.5rem;
+  padding-left: 1rem;
+  justify-content: flex-end;
+}
+.team-icon {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+.play-clock {
+  min-width: 3rem;
+}
+.mat-list[dense] .mat-list-item {
+  background: rgba(0, 0, 0, 0.05);
+  &.play-deadball {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
