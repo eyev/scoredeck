@@ -1,8 +1,10 @@
 import { ApplicationRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
-import { Observable, of, Subscription } from 'rxjs';
-import { shareReplay, take, takeWhile, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 import { createMiniScore, MiniScore } from '../nba-mini-score/state/mini-score.model';
 import { MiniScoreQuery } from '../nba-mini-score/state/mini-score.query';
@@ -24,7 +26,6 @@ export class NbaHomeComponent implements OnInit {
   activeGames: MiniScore[] | undefined = [createMiniScore({})];
   activeGamesRefresh: number | undefined = undefined;
   isInit = false;
-  private isAppStable: Subscription;
 
   constructor(
     private scheduleService: NbaScheduleService,
@@ -64,7 +65,7 @@ export class NbaHomeComponent implements OnInit {
   }
 
   setRefresh() {
-    this.isAppStable = this.appRef.isStable.subscribe(ready => {
+    this.appRef.isStable.pipe(untilDestroyed(this)).subscribe(ready => {
       if (!ready) {
         return;
       }
@@ -109,7 +110,6 @@ export class NbaHomeComponent implements OnInit {
       .pipe(
         tap(() => {
           this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scrollHeight;
-          console.log(this.scrollContainer);
         }),
       )
       .subscribe(day => {

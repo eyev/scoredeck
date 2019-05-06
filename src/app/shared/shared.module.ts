@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
-    MatButtonModule, MatIconModule, MatListModule, MatProgressSpinnerModule, MatSidenavModule,
-    MatSnackBarModule, MatSortModule, MatTableModule, MatToolbarModule, MatTooltipModule
+    MatButtonModule, MatIconModule, MatListModule, MatProgressSpinnerModule, MatSelectModule,
+    MatSidenavModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule,
+    MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import { MatRippleModule } from '@angular/material/core';
 
@@ -23,6 +24,8 @@ import { NgSubscribeDirective } from './ng-subscribe.directive';
     MatProgressSpinnerModule,
     MatTooltipModule,
     MatSnackBarModule,
+    MatTabsModule,
+    MatSelectModule,
   ],
   exports: [
     MatToolbarModule,
@@ -39,6 +42,8 @@ import { NgSubscribeDirective } from './ng-subscribe.directive';
     MatSnackBarModule,
     LoadingSpinnerComponent,
     NgSubscribeDirective,
+    MatTabsModule,
+    MatSelectModule,
   ],
   declarations: [LoadingSpinnerComponent, NgSubscribeDirective],
 })

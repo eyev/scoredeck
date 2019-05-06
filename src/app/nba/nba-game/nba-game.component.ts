@@ -1,13 +1,15 @@
 import { ApplicationRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Observable, of, Subscription } from 'rxjs';
+import { of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { fadeIn } from 'src/app/shared/animation-library';
 
-import { NbaScheduleService } from '../nba-schedule/state/nba-schedule.service';
-import { createNbaGame, NbaGame } from './nba-game';
-import { NbaGameService } from './nba-game.service';
+import { untilDestroyed } from 'ngx-take-until-destroy';
+
+import { NbaGame } from './state/nba-game.model';
+import { NbaGameQuery } from './state/nba-game.query';
+import { NbaGameService } from './state/nba-game.service';
 
 @Component({
   selector: 'sd-nba-game',
@@ -16,58 +18,67 @@ import { NbaGameService } from './nba-game.service';
   animations: [fadeIn],
 })
 export class NbaGameComponent implements OnInit, OnDestroy {
-  game: Observable<NbaGame> = of(createNbaGame());
+  game = of<NbaGame>();
   isLoading = true;
-  isLive = false;
   activeGameRefresh: number | undefined = undefined;
-  prettyDate: Date = new Date();
-  private isAppStable: Subscription;
-  private gameId = '';
-  private date = '';
 
+  private gameId = '';
+  date = '';
+  navLinks = [
+    {
+      path: './stats',
+      label: 'Game Stats',
+    },
+    {
+      path: './pbp',
+      label: 'Play by Play',
+    },
+  ];
   constructor(
     private route: ActivatedRoute,
     private nbaGameService: NbaGameService,
-    private nbaScheduleService: NbaScheduleService,
     private appRef: ApplicationRef,
+    private gameQuery: NbaGameQuery,
   ) {}
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.date = params['date'];
       this.gameId = params['gameId'];
-      this.prettyDate = this.nbaScheduleService.convertDateString(this.date);
-      this.game = this.loadGame();
+      this.loadGame();
     });
   }
 
   ngOnDestroy() {
-    this.isAppStable.unsubscribe();
+    this.nbaGameService.reset();
   }
 
   enableGameRefresh() {
-    this.isAppStable = this.appRef.isStable.subscribe(ready => {
+    this.appRef.isStable.pipe(untilDestroyed(this)).subscribe(ready => {
       if (!ready) {
         return;
       }
       window.clearInterval(this.activeGameRefresh);
       this.activeGameRefresh = window.setInterval(() => {
-        this.game = this.loadGame();
+        this.loadGame();
       }, 30000);
     });
   }
 
   loadGame() {
-    return this.nbaGameService.getGame(this.date, this.gameId).pipe(
-      tap(game => {
-        this.isLive = game.meta.isStarted && !game.meta.isComplete;
-        if (this.isLive) {
-          this.enableGameRefresh();
-        } else {
-          window.clearInterval(this.activeGameRefresh);
-        }
-        this.isLoading = false;
-      }),
-    );
+    this.nbaGameService
+      .getGame(this.date, this.gameId)
+      .pipe(
+        tap(game => {
+          if (game.meta.isStarted && !game.meta.isComplete) {
+            this.enableGameRefresh();
+          } else {
+            window.clearInterval(this.activeGameRefresh);
+          }
+          this.isLoading = false;
+        }),
+        untilDestroyed(this),
+      )
+      .subscribe();
   }
 }

@@ -2,6 +2,7 @@
   <section class="team">
     <div class="team-logo">
       <img
+        *ngIf="game.away.shortName.length > 0"
         src="/assets/logos/nba/teams/{{ game.away.shortName }}/{{
           game.away.shortName
         }}.svg"
@@ -38,7 +39,7 @@
         [class.active]="game.meta.isOvertime && !game.meta.isComplete"
         *ngIf="game.meta.isOvertime"
       >
-        {{getOverTimeScore(game.away)}}
+        {{ getOverTimeScore(game.away) }}
       </div>
       <div class="quarter total" [class.active]="game.meta.isComplete">
         <span *ngIf="game.away.total !== '0'"> {{ game.away.total }} </span>
@@ -59,7 +60,7 @@
         [class.active]="game.meta.isOvertime && !game.meta.isComplete"
         *ngIf="game.meta.isOvertime"
       >
-      {{getOverTimeScore(game.home)}}
+        {{ getOverTimeScore(game.home) }}
       </div>
       <div class="quarter total" [class.active]="game.meta.isComplete">
         <span *ngIf="game.home.total !== '0'"> {{ game.home.total }} </span>
@@ -92,6 +93,7 @@
     </div>
     <div class="team-logo">
       <img
+        *ngIf="game.home.shortName.length > 0"
         src="/assets/logos/nba/teams/{{ game.home.shortName }}/{{
           game.home.shortName
         }}.svg"

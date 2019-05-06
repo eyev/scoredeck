@@ -1,6 +1,6 @@
 {
-  "name": "sd",
-  "version": "0.0.0",
+  "name": "scoredeck",
+  "version": "1.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --aot",
@@ -32,6 +32,7 @@
     "@swimlane/ngx-charts": "9.0.0",
     "core-js": "2.5.4",
     "moment": "2.22.2",
+    "ngx-take-until-destroy": "^5.4.0",
     "rxjs": "6.3.3",
     "zone.js": "0.8.26"
   },

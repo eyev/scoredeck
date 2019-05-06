@@ -6,6 +6,7 @@ export interface MiniScoreTeam {
   record: string;
   total: string;
   quarters: string[];
+  teamId: string;
 }
 export interface MiniScoreMeta {
   broadcaster: string;
@@ -39,6 +40,7 @@ export function createMiniScore(params: Partial<MiniScore>): MiniScore {
     games: [
       {
         home: {
+          teamId: '',
           name: '',
           shortName: '',
           record: '',
@@ -46,6 +48,7 @@ export function createMiniScore(params: Partial<MiniScore>): MiniScore {
           quarters: [],
         },
         away: {
+          teamId: '',
           name: '',
           shortName: '',
           record: '',

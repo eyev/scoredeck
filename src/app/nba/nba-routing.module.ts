@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { NbaGamePbpComponent } from './nba-game/nba-game-pbp/nba-game-pbp.component';
+import { NbaGameStatsComponent } from './nba-game/nba-game-stats/nba-game-stats.component';
 import { NbaGameComponent } from './nba-game/nba-game.component';
 import { NbaHomeComponent } from './nba-home/nba-home.component';
 
@@ -10,6 +12,21 @@ const routes: Routes = [
   {
     path: 'game/:date/:gameId',
     component: NbaGameComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'stats',
+        pathMatch: 'full',
+      },
+      {
+        path: 'stats',
+        component: NbaGameStatsComponent,
+      },
+      {
+        path: 'pbp',
+        component: NbaGamePbpComponent,
+      },
+    ],
   },
 ];
 

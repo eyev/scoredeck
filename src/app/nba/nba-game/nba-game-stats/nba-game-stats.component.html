@@ -1,0 +1,56 @@
+<section
+  class="game-time-location"
+  *ngIf="game.away.shortName.length > 0 && game.home.shortName.length > 0"
+>
+  <div>
+    <span class="date"> {{ prettyDate | date: 'fullDate' }} </span>
+  </div>
+  <div>
+    {{ game.meta.arena.name }}
+    <div class="live-game" *ngIf="isLive">
+      <mat-icon aria-label="Side nav toggle icon">brightness_1</mat-icon>
+      <span> Live Game</span>
+    </div>
+  </div>
+</section>
+
+<section class="game-details" *ngIf="game">
+  <section class="team">
+    <h2>
+      <img
+        src="/assets/logos/nba/teams/{{ game.away.shortName }}/{{
+          game.away.shortName
+        }}.svg"
+      />
+      {{ game.away.name }}
+    </h2>
+    <sd-nba-game-team-stats
+      [stats]="game.away.teamStats"
+      *ngIf="game"
+    ></sd-nba-game-team-stats>
+    <sd-nba-game-box-score
+      [team]="game.away.name"
+      [players]="game.away.players"
+      *ngIf="game"
+    ></sd-nba-game-box-score>
+  </section>
+  <section class="team">
+    <h2>
+      <img
+        src="/assets/logos/nba/teams/{{ game.home.shortName }}/{{
+          game.home.shortName
+        }}.svg"
+      />
+      {{ game.home.name }}
+    </h2>
+    <sd-nba-game-team-stats
+      [stats]="game.home.teamStats"
+      *ngIf="game"
+    ></sd-nba-game-team-stats>
+    <sd-nba-game-box-score
+      [team]="game.home.name"
+      [players]="game.home.players"
+      *ngIf="game"
+    ></sd-nba-game-box-score>
+  </section>
+</section>
