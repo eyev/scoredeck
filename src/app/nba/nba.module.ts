@@ -7,11 +7,16 @@ import {
     NbaGameBoxScoreComponent
 } from './nba-game/nba-game-box-score/nba-game-box-score.component';
 import { NbaGameHeaderComponent } from './nba-game/nba-game-header/nba-game-header.component';
+import { NbaGamePbpComponent } from './nba-game/nba-game-pbp/nba-game-pbp.component';
+import { NbaGameStatsComponent } from './nba-game/nba-game-stats/nba-game-stats.component';
 import {
     NbaGameTeamStatsComponent
 } from './nba-game/nba-game-team-stats/nba-game-team-stats.component';
 import { NbaGameComponent } from './nba-game/nba-game.component';
 import { NbaHomeComponent } from './nba-home/nba-home.component';
+import {
+    NbaMiniScoreFooterComponent
+} from './nba-mini-score/nba-mini-score-footer/nba-mini-score-footer.component';
 import {
     NbaMiniScoreHeaderComponent
 } from './nba-mini-score/nba-mini-score-header/nba-mini-score-header.component';
@@ -23,7 +28,6 @@ import {
 } from './nba-mini-score/nba-mini-score-team/nba-mini-score-team.component';
 import { NbaMiniScoreComponent } from './nba-mini-score/nba-mini-score.component';
 import { NbaRoutingModule } from './nba-routing.module';
-import { NbaMiniScoreFooterComponent } from './nba-mini-score/nba-mini-score-footer/nba-mini-score-footer.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule, NbaRoutingModule],
@@ -40,6 +44,8 @@ import { NbaMiniScoreFooterComponent } from './nba-mini-score/nba-mini-score-foo
     NbaGameBoxScoreComponent,
     NbaGameTeamStatsComponent,
     NbaMiniScoreFooterComponent,
+    NbaGameStatsComponent,
+    NbaGamePbpComponent,
   ],
 })
 export class NbaModule {}
