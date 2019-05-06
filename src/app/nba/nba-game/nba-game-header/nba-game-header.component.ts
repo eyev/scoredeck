@@ -1,16 +1,27 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
-import { NbaGame, NbaGameTeam } from '../nba-game';
+import { untilDestroyed } from 'ngx-take-until-destroy';
+
+import { createNbaGame, NbaGame, NbaGameTeam } from '../state/nba-game.model';
+import { NbaGameQuery } from '../state/nba-game.query';
 
 @Component({
   selector: 'sd-nba-game-header',
   templateUrl: './nba-game-header.component.html',
   styleUrls: ['./nba-game-header.component.scss'],
 })
-export class NbaGameHeaderComponent {
-  @Input()
-  game: NbaGame;
-  constructor() {}
+export class NbaGameHeaderComponent implements OnInit, OnDestroy {
+  game: NbaGame = createNbaGame();
+  constructor(private gameQuery: NbaGameQuery) {}
+
+  ngOnInit() {
+    this.gameQuery
+      .select<NbaGame>()
+      .pipe(untilDestroyed(this))
+      .subscribe(game => (this.game = game));
+  }
+
+  ngOnDestroy() {}
 
   getQuarter(quarter: number) {
     if (quarter === 1) {
