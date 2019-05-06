@@ -1,0 +1,75 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+section.team {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  flex-direction: column;
+  @media screen and (min-width: 1400px) {
+    width: 50%;
+  }
+  &:first-child {
+    @media screen and (min-width: 1400px) {
+      border-bottom: none;
+    }
+  }
+  &:last-child {
+    @media screen and (min-width: 1400px) {
+      border-top: none;
+    }
+  }
+}
+.game-details {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  min-height: calc(100vh - 128px);
+  @media screen and (min-width: 1400px) {
+    flex-direction: row;
+  }
+}
+:host {
+  display: flex;
+  min-height: calc(100vh - 64px);
+}
+
+.game-details section.team h2 {
+  padding: 0.5rem 0 1rem;
+  font-size: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.game-details section.team h2 img {
+  max-height: 3rem;
+  margin-right: 1rem;
+}
+.game-time-location {
+  padding: 1rem;
+  span.date {
+    font-size: 1.25rem;
+  }
+}
+.live-game {
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  background: #2f2f2f;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  color: #fff;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  mat-icon {
+    width: 0.89rem;
+    height: 0.885rem;
+    font-size: 0.9rem;
+    margin-right: 0.25rem;
+    color: red;
+  }
+}
