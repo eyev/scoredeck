@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ApplicationRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 
 import { Observable, of } from 'rxjs';
@@ -18,7 +18,7 @@ import { NbaScheduleService } from '../nba-schedule/state/nba-schedule.service';
   templateUrl: './nba-home.component.html',
   styleUrls: ['./nba-home.component.scss'],
 })
-export class NbaHomeComponent implements OnInit {
+export class NbaHomeComponent implements OnInit, OnDestroy {
   @ViewChild('scrollContainer')
   private scrollContainer: ElementRef;
   schedule: NbaSchedule[] = [];
@@ -63,6 +63,8 @@ export class NbaHomeComponent implements OnInit {
       }
     });
   }
+
+  ngOnDestroy() {}
 
   setRefresh() {
     this.appRef.isStable.pipe(untilDestroyed(this)).subscribe(ready => {
