@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:prod": "ng build --prod",
-    "postbuild:prod": "cp _redirects dist/sd/_redirects"
+    "postbuild:prod": "cp _redirects dist/sd/_redirects && cp _headers dist/sd/_headers"
   },
   "private": true,
   "dependencies": {
