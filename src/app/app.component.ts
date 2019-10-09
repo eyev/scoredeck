@@ -44,12 +44,6 @@ export class AppComponent implements OnInit {
         '../assets/logos/mlb/baseball.svg',
       ),
     );
-    this.matIconRegistry.addSvgIcon(
-      'csgo',
-      this.domSanitizer.bypassSecurityTrustResourceUrl(
-        '../assets/logos/csgo/csgo.svg',
-      ),
-    );
   }
 
   ngOnInit() {

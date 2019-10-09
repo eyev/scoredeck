@@ -37,9 +37,9 @@ export class NbaHomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.scheduleService.getSchedule('2018').subscribe(season => {
+    this.scheduleService.getSchedule('2019').subscribe(season => {
       this.schedule = season;
-      this.scheduleService.setSchedule(season, '2018');
+      this.scheduleService.setSchedule(season, '2019');
     });
 
     this.scheduleQuery.selectOnce(schedule => schedule).subscribe(schedule => {
